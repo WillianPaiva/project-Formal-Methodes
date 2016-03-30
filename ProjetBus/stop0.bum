@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<org.eventb.core.machineFile org.eventb.core.configuration="org.eventb.core.fwd;de.prob.units.mchBase" version="5">
+<org.eventb.core.event name="'" org.eventb.core.convergence="0" org.eventb.core.extended="false" org.eventb.core.label="INITIALISATION">
+<org.eventb.core.action name="'" org.eventb.core.assignment="queue ≔ ∅" org.eventb.core.label="act1"/>
+<org.eventb.core.action name="(" org.eventb.core.assignment="prior ≔ ∅" org.eventb.core.label="act2"/>
+<org.eventb.core.action name=")" org.eventb.core.assignment="place ≔ ∅" org.eventb.core.label="act3"/>
+<org.eventb.core.action name="*" org.eventb.core.assignment="ticket ≔ 1" org.eventb.core.label="act4"/>
+<org.eventb.core.action name="+" org.eventb.core.assignment="passengers ≔ ∅" org.eventb.core.label="act5"/>
+</org.eventb.core.event>
+<org.eventb.core.seesContext name="(" org.eventb.core.target="passengers0"/>
+<org.eventb.core.variable de.prob.units.inferredUnitPragmaAttribute="" de.prob.units.unitPragmaAttribute="" name=")" org.eventb.core.identifier="queue"/>
+<org.eventb.core.invariant name="*" org.eventb.core.label="inv1" org.eventb.core.predicate="queue ⊆ PRS"/>
+<org.eventb.core.variable de.prob.units.inferredUnitPragmaAttribute="" de.prob.units.unitPragmaAttribute="" name="+" org.eventb.core.identifier="prior"/>
+<org.eventb.core.invariant name="," org.eventb.core.label="inv2" org.eventb.core.predicate="prior ∈ queue → ℕ1 "/>
+<org.eventb.core.variable de.prob.units.inferredUnitPragmaAttribute="" de.prob.units.unitPragmaAttribute="" name="-" org.eventb.core.identifier="place"/>
+<org.eventb.core.invariant name="." org.eventb.core.label="inv3" org.eventb.core.predicate="place ∈ queue → ℕ1"/>
+<org.eventb.core.variable de.prob.units.inferredUnitPragmaAttribute="" de.prob.units.unitPragmaAttribute="" name="/" org.eventb.core.identifier="ticket"/>
+<org.eventb.core.invariant name="0" org.eventb.core.label="inv4" org.eventb.core.predicate="ticket ∈ ℕ1"/>
+<org.eventb.core.event name="1" org.eventb.core.convergence="0" org.eventb.core.extended="false" org.eventb.core.label="enter_queue">
+<org.eventb.core.parameter name="'" org.eventb.core.identifier="person"/>
+<org.eventb.core.parameter name="(" org.eventb.core.identifier="priority"/>
+<org.eventb.core.guard name=")" org.eventb.core.label="grd1" org.eventb.core.predicate="person ∉ queue ∧ person ∈ PRS ∧ person ∉ passengers"/>
+<org.eventb.core.guard name="*" org.eventb.core.label="grd2" org.eventb.core.predicate="priority ∈ ℕ1"/>
+<org.eventb.core.action name="+" org.eventb.core.assignment="prior(person) ≔ priority" org.eventb.core.label="act1"/>
+<org.eventb.core.action name="," org.eventb.core.assignment="place(person) ≔ ticket " org.eventb.core.label="act2"/>
+<org.eventb.core.action name="-" org.eventb.core.assignment="ticket ≔ ticket +1" org.eventb.core.label="act3"/>
+<org.eventb.core.action name="." org.eventb.core.assignment="queue ≔ queue ∪ {person}" org.eventb.core.label="act4"/>
+</org.eventb.core.event>
+<org.eventb.core.seesContext name="2" org.eventb.core.target="bus0"/>
+<org.eventb.core.variable de.prob.units.inferredUnitPragmaAttribute="" de.prob.units.unitPragmaAttribute="" name="3" org.eventb.core.identifier="passengers"/>
+<org.eventb.core.invariant name="4" org.eventb.core.label="inv5" org.eventb.core.predicate="passengers ⊆ PRS"/>
+<org.eventb.core.event name="5" org.eventb.core.convergence="0" org.eventb.core.extended="false" org.eventb.core.label="board">
+<org.eventb.core.parameter name="'" org.eventb.core.identifier="person"/>
+<org.eventb.core.guard name="(" org.eventb.core.label="grd1" org.eventb.core.predicate="person ∈ queue ∧ person ∉ passengers ∧ person ∈ PRS"/>
+<org.eventb.core.action name=")" org.eventb.core.assignment="queue ≔ queue∖{person}" org.eventb.core.label="act1"/>
+<org.eventb.core.action name="*" org.eventb.core.assignment="place ≔ {person}⩤place" org.eventb.core.label="act2"/>
+<org.eventb.core.action name="+" org.eventb.core.assignment="prior ≔ {person}⩤prior" org.eventb.core.label="act3"/>
+<org.eventb.core.action name="," org.eventb.core.assignment="passengers ≔ passengers ∪ {person}" org.eventb.core.label="act4"/>
+</org.eventb.core.event>
+<org.eventb.core.event name="6" org.eventb.core.convergence="0" org.eventb.core.extended="false" org.eventb.core.label="get_out">
+<org.eventb.core.parameter name="'" org.eventb.core.identifier="person"/>
+<org.eventb.core.guard name="(" org.eventb.core.label="grd1" org.eventb.core.predicate="person ∈ passengers ∧ person ∉ queue ∧ person ∈ PRS"/>
+<org.eventb.core.action name=")" org.eventb.core.assignment="passengers ≔ passengers∖{person}" org.eventb.core.label="act1"/>
+</org.eventb.core.event>
+</org.eventb.core.machineFile>

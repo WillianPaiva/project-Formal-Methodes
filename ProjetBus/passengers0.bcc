@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<org.eventb.core.scContextFile org.eventb.core.accurate="true" org.eventb.core.configuration="org.eventb.core.fwd;de.prob.symbolic.ctxBase;de.prob.units.mchBase">
+<org.eventb.core.scCarrierSet name="PRS" org.eventb.core.source="/ProjetBus/passengers0.buc|org.eventb.core.contextFile#passengers0|org.eventb.core.carrierSet#'" org.eventb.core.type="ℙ(PRS)"/>
+</org.eventb.core.scContextFile>
