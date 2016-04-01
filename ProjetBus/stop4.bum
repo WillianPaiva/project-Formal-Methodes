@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<org.eventb.core.machineFile org.eventb.core.configuration="org.eventb.core.fwd;de.prob.units.mchBase" version="5">
+<org.eventb.core.refinesMachine name="'" org.eventb.core.target="stop3"/>
+<org.eventb.core.seesContext name="*" org.eventb.core.target="passengers0"/>
+<org.eventb.core.seesContext name="+" org.eventb.core.target="bus0"/>
+<org.eventb.core.variable de.prob.units.inferredUnitPragmaAttribute="" de.prob.units.unitPragmaAttribute="" name="(" org.eventb.core.identifier="waiting"/>
+<org.eventb.core.variable de.prob.units.inferredUnitPragmaAttribute="" de.prob.units.unitPragmaAttribute="" name="," org.eventb.core.identifier="bus_passengers"/>
+<org.eventb.core.variable de.prob.units.inferredUnitPragmaAttribute="" de.prob.units.unitPragmaAttribute="" name="1" org.eventb.core.identifier="present"/>
+<org.eventb.core.variable de.prob.units.inferredUnitPragmaAttribute="" de.prob.units.unitPragmaAttribute="" name="8" org.eventb.core.identifier="ticket"/>
+<org.eventb.core.variable de.prob.units.inferredUnitPragmaAttribute="" de.prob.units.unitPragmaAttribute="" name="@" org.eventb.core.identifier="queue_place"/>
+<org.eventb.core.variable de.prob.units.inferredUnitPragmaAttribute="" de.prob.units.unitPragmaAttribute="" name="G" org.eventb.core.identifier="priority"/>
+<org.eventb.core.event name="H" org.eventb.core.convergence="0" org.eventb.core.extended="true" org.eventb.core.label="INITIALISATION">
+<org.eventb.core.action name="'" org.eventb.core.assignment="wants_to_go_down ≔ ∅" org.eventb.core.label="act7"/>
+</org.eventb.core.event>
+<org.eventb.core.event name="I" org.eventb.core.convergence="0" org.eventb.core.extended="true" org.eventb.core.label="passenger_arrive_stop">
+<org.eventb.core.refinesEvent name="'" org.eventb.core.target="passenger_arrive_stop"/>
+</org.eventb.core.event>
+<org.eventb.core.event name="J" org.eventb.core.convergence="0" org.eventb.core.extended="true" org.eventb.core.label="get_in">
+<org.eventb.core.refinesEvent name="'" org.eventb.core.target="get_in"/>
+<org.eventb.core.guard name="(" org.eventb.core.label="grd7" org.eventb.core.predicate="wants_to_go_down = ∅"/>
+</org.eventb.core.event>
+<org.eventb.core.event name="K" org.eventb.core.convergence="0" org.eventb.core.extended="true" org.eventb.core.label="get_out">
+<org.eventb.core.refinesEvent name="'" org.eventb.core.target="get_out"/>
+<org.eventb.core.guard name="(" org.eventb.core.label="grd3" org.eventb.core.predicate="person ∈ wants_to_go_down"/>
+<org.eventb.core.action name=")" org.eventb.core.assignment="wants_to_go_down ≔ wants_to_go_down∖{person}" org.eventb.core.label="act2"/>
+</org.eventb.core.event>
+<org.eventb.core.event name="L" org.eventb.core.convergence="0" org.eventb.core.extended="true" org.eventb.core.label="bus_arrive">
+<org.eventb.core.refinesEvent name="'" org.eventb.core.target="bus_arrive"/>
+</org.eventb.core.event>
+<org.eventb.core.event name="M" org.eventb.core.convergence="0" org.eventb.core.extended="true" org.eventb.core.label="bus_depart">
+<org.eventb.core.refinesEvent name="'" org.eventb.core.target="bus_depart"/>
+</org.eventb.core.event>
+<org.eventb.core.variable de.prob.units.inferredUnitPragmaAttribute="" de.prob.units.unitPragmaAttribute="" name="N" org.eventb.core.identifier="wants_to_go_down"/>
+<org.eventb.core.invariant name="O" org.eventb.core.label="inv1" org.eventb.core.predicate="wants_to_go_down ⊆ bus_passengers "/>
+<org.eventb.core.event name="P" org.eventb.core.convergence="0" org.eventb.core.extended="false" org.eventb.core.label="want_get_out">
+<org.eventb.core.parameter name="'" org.eventb.core.identifier="person"/>
+<org.eventb.core.guard name="(" org.eventb.core.label="grd1" org.eventb.core.predicate="person ∈ bus_passengers ∧ person ∉ waiting"/>
+<org.eventb.core.action name=")" org.eventb.core.assignment="wants_to_go_down ≔ wants_to_go_down ∪ {person}" org.eventb.core.label="act1"/>
+</org.eventb.core.event>
+</org.eventb.core.machineFile>

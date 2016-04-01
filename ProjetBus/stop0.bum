@@ -11,14 +11,14 @@
 <org.eventb.core.seesContext name="+" org.eventb.core.target="bus0"/>
 <org.eventb.core.variable de.prob.units.inferredUnitPragmaAttribute="" de.prob.units.unitPragmaAttribute="" name="," org.eventb.core.identifier="bus_passengers"/>
 <org.eventb.core.invariant name="-" org.eventb.core.label="inv2" org.eventb.core.predicate="bus_passengers ⊆ PRS"/>
-<org.eventb.core.event name="." org.eventb.core.convergence="0" org.eventb.core.extended="false" org.eventb.core.label="arrive_stop">
+<org.eventb.core.event name="." org.eventb.core.convergence="0" org.eventb.core.extended="false" org.eventb.core.label="passenger_arrive_stop">
 <org.eventb.core.parameter name="'" org.eventb.core.identifier="person"/>
 <org.eventb.core.guard name="(" org.eventb.core.label="grd1" org.eventb.core.predicate="person ∉ waiting ∧ person ∉ bus_passengers ∧ person ∈ PRS"/>
 <org.eventb.core.action name=")" org.eventb.core.assignment="waiting ≔ waiting ∪ {person}" org.eventb.core.label="act1"/>
 </org.eventb.core.event>
 <org.eventb.core.event name="/" org.eventb.core.convergence="0" org.eventb.core.extended="false" org.eventb.core.label="get_in">
 <org.eventb.core.parameter name="'" org.eventb.core.identifier="person"/>
-<org.eventb.core.guard name="(" org.eventb.core.label="grd1" org.eventb.core.predicate="person ∈ waiting ∧ person ∉ bus_passengers ∧ person ∈ PRS"/>
+<org.eventb.core.guard name="(" org.eventb.core.label="grd1" org.eventb.core.predicate="person ∈ waiting ∧ person ∉ bus_passengers"/>
 <org.eventb.core.action name=")" org.eventb.core.assignment="waiting ≔ waiting∖{person}" org.eventb.core.label="act1"/>
 <org.eventb.core.action name="*" org.eventb.core.assignment="bus_passengers ≔ bus_passengers ∪ {person}" org.eventb.core.label="act2"/>
 <org.eventb.core.guard name="+" org.eventb.core.label="grd2" org.eventb.core.predicate="present = TRUE"/>
@@ -26,7 +26,7 @@
 </org.eventb.core.event>
 <org.eventb.core.event name="0" org.eventb.core.convergence="0" org.eventb.core.extended="false" org.eventb.core.label="get_out">
 <org.eventb.core.parameter name="'" org.eventb.core.identifier="person"/>
-<org.eventb.core.guard name="(" org.eventb.core.label="grd1" org.eventb.core.predicate="person ∈ bus_passengers ∧ person ∉ waiting ∧ person ∈ PRS "/>
+<org.eventb.core.guard name="(" org.eventb.core.label="grd1" org.eventb.core.predicate="person ∈ bus_passengers ∧ person ∉ waiting"/>
 <org.eventb.core.action name=")" org.eventb.core.assignment="bus_passengers ≔ bus_passengers∖{person}" org.eventb.core.label="act1"/>
 <org.eventb.core.guard name="*" org.eventb.core.label="grd2" org.eventb.core.predicate="present = TRUE"/>
 </org.eventb.core.event>
