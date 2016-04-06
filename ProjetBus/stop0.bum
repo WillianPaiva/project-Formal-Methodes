@@ -2,7 +2,7 @@
 <org.eventb.core.machineFile org.eventb.core.configuration="org.eventb.core.fwd;de.prob.units.mchBase" version="5">
 <org.eventb.core.event name="'" org.eventb.core.convergence="0" org.eventb.core.extended="false" org.eventb.core.label="INITIALISATION">
 <org.eventb.core.action name="'" org.eventb.core.assignment="waiting ≔ ∅" org.eventb.core.label="act1"/>
-<org.eventb.core.action name="(" org.eventb.core.assignment="bus_passengers ≔ ∅" org.eventb.core.label="act2"/>
+<org.eventb.core.action name="(" org.eventb.core.assignment="bus_passengers :∣ (bus_passengers' ⊆ PRS) ∧ finite(bus_passengers') ∧ (card(bus_passengers') ∈ 0‥maxPassengers)" org.eventb.core.label="act2"/>
 <org.eventb.core.action name=")" org.eventb.core.assignment="present ≔ FALSE" org.eventb.core.label="act3"/>
 </org.eventb.core.event>
 <org.eventb.core.variable de.prob.units.inferredUnitPragmaAttribute="" de.prob.units.unitPragmaAttribute="" name="(" org.eventb.core.identifier="waiting"/>

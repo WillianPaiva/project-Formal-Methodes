@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<org.eventb.core.poFile org.eventb.core.poStamp="4">
+<org.eventb.core.poFile org.eventb.core.poStamp="8">
 <org.eventb.core.poPredicateSet name="CTXHYP" org.eventb.core.poStamp="4">
 <org.eventb.core.poIdentifier name="PRS" org.eventb.core.type="ℙ(PRS)"/>
 <org.eventb.core.poPredicate name="PRT" org.eventb.core.predicate="finite(PRS)" org.eventb.core.source="/ProjetBus/passengers0.buc|org.eventb.core.contextFile#passengers0|org.eventb.core.axiom#("/>
@@ -16,7 +16,7 @@
 <org.eventb.core.poPredicate name="bus_passengerv" org.eventb.core.predicate="present∈BOOL" org.eventb.core.source="/ProjetBus/stop0.bum|org.eventb.core.machineFile#stop0|org.eventb.core.invariant#2"/>
 <org.eventb.core.poPredicate name="bus_passengerw" org.eventb.core.predicate="card(bus_passengers)∈0 ‥ maxPassengers" org.eventb.core.source="/ProjetBus/stop0.bum|org.eventb.core.machineFile#stop0|org.eventb.core.invariant#5"/>
 </org.eventb.core.poPredicateSet>
-<org.eventb.core.poSequent name="INITIALISATION/inv1/INV" org.eventb.core.accurate="true" org.eventb.core.poDesc="Invariant  establishment" org.eventb.core.poStamp="4">
+<org.eventb.core.poSequent name="INITIALISATION/inv1/INV" org.eventb.core.accurate="true" org.eventb.core.poDesc="Invariant  establishment" org.eventb.core.poStamp="8">
 <org.eventb.core.poPredicateSet name="SEQHYP" org.eventb.core.parentSet="/ProjetBus/stop1.bpo|org.eventb.core.poFile#stop1|org.eventb.core.poPredicateSet#EVTALLHYPbus_passengert"/>
 <org.eventb.core.poPredicate name="SEQHYQ" org.eventb.core.predicate="1∈ℕ1" org.eventb.core.source="/ProjetBus/stop1.bum|org.eventb.core.machineFile#stop1|org.eventb.core.invariant#9"/>
 <org.eventb.core.poSource name="SEQHYR" org.eventb.core.poRole="ABSTRACT" org.eventb.core.source="/ProjetBus/stop0.bum|org.eventb.core.machineFile#stop0|org.eventb.core.event#'"/>
