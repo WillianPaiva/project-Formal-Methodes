@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<org.eventb.core.machineFile org.eventb.core.configuration="org.eventb.core.fwd;de.prob.units.mchBase" version="5">
+<org.eventb.core.machineFile org.eventb.core.comment="improved get out" org.eventb.core.configuration="org.eventb.core.fwd;de.prob.units.mchBase" version="5">
 <org.eventb.core.refinesMachine name="'" org.eventb.core.target="stop3"/>
 <org.eventb.core.seesContext name="*" org.eventb.core.target="passengers0"/>
 <org.eventb.core.seesContext name="+" org.eventb.core.target="bus0"/>
@@ -17,12 +17,12 @@
 </org.eventb.core.event>
 <org.eventb.core.event name="J" org.eventb.core.convergence="0" org.eventb.core.extended="true" org.eventb.core.label="get_in">
 <org.eventb.core.refinesEvent name="'" org.eventb.core.target="get_in"/>
-<org.eventb.core.guard name="(" org.eventb.core.label="grd7" org.eventb.core.predicate="wants_to_go_down = ∅"/>
+<org.eventb.core.guard name="(" org.eventb.core.comment="checks that no one wants to get out before wny one can get in " org.eventb.core.label="grd7" org.eventb.core.predicate="wants_to_go_down = ∅"/>
 </org.eventb.core.event>
 <org.eventb.core.event name="K" org.eventb.core.convergence="0" org.eventb.core.extended="true" org.eventb.core.label="get_out">
 <org.eventb.core.refinesEvent name="'" org.eventb.core.target="get_out"/>
 <org.eventb.core.guard name="(" org.eventb.core.label="grd3" org.eventb.core.predicate="person ∈ wants_to_go_down"/>
-<org.eventb.core.action name=")" org.eventb.core.assignment="wants_to_go_down ≔ wants_to_go_down∖{person}" org.eventb.core.label="act2"/>
+<org.eventb.core.action name=")" org.eventb.core.assignment="wants_to_go_down ≔ wants_to_go_down∖{person}" org.eventb.core.comment="remove a person from the wants_to_go_down set" org.eventb.core.label="act2"/>
 </org.eventb.core.event>
 <org.eventb.core.event name="L" org.eventb.core.convergence="0" org.eventb.core.extended="true" org.eventb.core.label="bus_arrive">
 <org.eventb.core.refinesEvent name="'" org.eventb.core.target="bus_arrive"/>
@@ -30,11 +30,11 @@
 <org.eventb.core.event name="M" org.eventb.core.convergence="0" org.eventb.core.extended="true" org.eventb.core.label="bus_depart">
 <org.eventb.core.refinesEvent name="'" org.eventb.core.target="bus_depart"/>
 </org.eventb.core.event>
-<org.eventb.core.variable de.prob.units.inferredUnitPragmaAttribute="" de.prob.units.unitPragmaAttribute="" name="N" org.eventb.core.identifier="wants_to_go_down"/>
+<org.eventb.core.variable de.prob.units.inferredUnitPragmaAttribute="" de.prob.units.unitPragmaAttribute="" name="N" org.eventb.core.comment="set of persons that wants to get out" org.eventb.core.identifier="wants_to_go_down"/>
 <org.eventb.core.invariant name="O" org.eventb.core.label="inv1" org.eventb.core.predicate="wants_to_go_down ⊆ bus_passengers "/>
 <org.eventb.core.event name="P" org.eventb.core.convergence="0" org.eventb.core.extended="false" org.eventb.core.label="want_get_out">
 <org.eventb.core.parameter name="'" org.eventb.core.identifier="person"/>
-<org.eventb.core.guard name="(" org.eventb.core.label="grd1" org.eventb.core.predicate="person ∈ bus_passengers ∧ person ∉ waiting"/>
-<org.eventb.core.action name=")" org.eventb.core.assignment="wants_to_go_down ≔ wants_to_go_down ∪ {person}" org.eventb.core.label="act1"/>
+<org.eventb.core.guard name="(" org.eventb.core.comment="check that the person is in the bus" org.eventb.core.label="grd1" org.eventb.core.predicate="person ∈ bus_passengers ∧ person ∉ waiting"/>
+<org.eventb.core.action name=")" org.eventb.core.assignment="wants_to_go_down ≔ wants_to_go_down ∪ {person}" org.eventb.core.comment="insert a person on the wants_to_go_down set" org.eventb.core.label="act1"/>
 </org.eventb.core.event>
 </org.eventb.core.machineFile>

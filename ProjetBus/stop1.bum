@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<org.eventb.core.machineFile org.eventb.core.configuration="org.eventb.core.fwd;de.prob.units.mchBase" version="5">
+<org.eventb.core.machineFile org.eventb.core.comment="create the ticket to keep track arrival " org.eventb.core.configuration="org.eventb.core.fwd;de.prob.units.mchBase" version="5">
 <org.eventb.core.refinesMachine name="'" org.eventb.core.target="stop0"/>
 <org.eventb.core.seesContext name="*" org.eventb.core.target="passengers0"/>
 <org.eventb.core.seesContext name="+" org.eventb.core.target="bus0"/>
@@ -7,11 +7,11 @@
 <org.eventb.core.variable de.prob.units.inferredUnitPragmaAttribute="" de.prob.units.unitPragmaAttribute="" name="," org.eventb.core.identifier="bus_passengers"/>
 <org.eventb.core.variable de.prob.units.inferredUnitPragmaAttribute="" de.prob.units.unitPragmaAttribute="" name="1" org.eventb.core.identifier="present"/>
 <org.eventb.core.event name="2" org.eventb.core.convergence="0" org.eventb.core.extended="true" org.eventb.core.label="INITIALISATION">
-<org.eventb.core.action name="'" org.eventb.core.assignment="ticket ≔ 1" org.eventb.core.label="act4"/>
+<org.eventb.core.action name="'" org.eventb.core.assignment="ticket ≔ 1" org.eventb.core.comment="ticket start from 1" org.eventb.core.label="act4"/>
 </org.eventb.core.event>
 <org.eventb.core.event name="3" org.eventb.core.convergence="0" org.eventb.core.extended="true" org.eventb.core.label="passenger_arrive_stop">
 <org.eventb.core.refinesEvent name="'" org.eventb.core.target="passenger_arrive_stop"/>
-<org.eventb.core.action name="(" org.eventb.core.assignment="ticket ≔ ticket+1" org.eventb.core.label="act2"/>
+<org.eventb.core.action name="(" org.eventb.core.assignment="ticket ≔ ticket+1" org.eventb.core.comment="when a passenger arrive at the stop the ticket increments " org.eventb.core.label="act2"/>
 </org.eventb.core.event>
 <org.eventb.core.event name="4" org.eventb.core.convergence="0" org.eventb.core.extended="true" org.eventb.core.label="get_in">
 <org.eventb.core.refinesEvent name="'" org.eventb.core.target="get_in"/>
@@ -25,6 +25,6 @@
 <org.eventb.core.event name="7" org.eventb.core.convergence="0" org.eventb.core.extended="true" org.eventb.core.label="bus_depart">
 <org.eventb.core.refinesEvent name="'" org.eventb.core.target="bus_depart"/>
 </org.eventb.core.event>
-<org.eventb.core.variable de.prob.units.inferredUnitPragmaAttribute="" de.prob.units.unitPragmaAttribute="" name="8" org.eventb.core.identifier="ticket"/>
-<org.eventb.core.invariant name="9" org.eventb.core.label="inv1" org.eventb.core.predicate="ticket ∈ ℕ1 "/>
+<org.eventb.core.variable de.prob.units.inferredUnitPragmaAttribute="" de.prob.units.unitPragmaAttribute="" name="8" org.eventb.core.comment="the bus ticket used to enumarate the order of arrival " org.eventb.core.identifier="ticket"/>
+<org.eventb.core.invariant name="9" org.eventb.core.comment="c" org.eventb.core.label="inv1" org.eventb.core.predicate="ticket ∈ ℕ1 "/>
 </org.eventb.core.machineFile>

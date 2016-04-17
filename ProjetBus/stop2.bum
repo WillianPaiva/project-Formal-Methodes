@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<org.eventb.core.machineFile org.eventb.core.configuration="org.eventb.core.fwd;de.prob.units.mchBase" version="5">
+<org.eventb.core.machineFile org.eventb.core.comment="creates the queue" org.eventb.core.configuration="org.eventb.core.fwd;de.prob.units.mchBase" version="5">
 <org.eventb.core.refinesMachine name="'" org.eventb.core.target="stop1"/>
 <org.eventb.core.seesContext name="*" org.eventb.core.target="passengers0"/>
 <org.eventb.core.seesContext name="+" org.eventb.core.target="bus0"/>
@@ -12,11 +12,11 @@
 </org.eventb.core.event>
 <org.eventb.core.event name=":" org.eventb.core.convergence="0" org.eventb.core.extended="true" org.eventb.core.label="passenger_arrive_stop">
 <org.eventb.core.refinesEvent name="'" org.eventb.core.target="passenger_arrive_stop"/>
-<org.eventb.core.action name="(" org.eventb.core.assignment="queue_place(person) ≔ ticket" org.eventb.core.label="act3"/>
+<org.eventb.core.action name="(" org.eventb.core.assignment="queue_place(person) ≔ ticket" org.eventb.core.comment="on arrival a person get as ticket" org.eventb.core.label="act3"/>
 </org.eventb.core.event>
 <org.eventb.core.event name=";" org.eventb.core.convergence="0" org.eventb.core.extended="true" org.eventb.core.label="get_in">
 <org.eventb.core.refinesEvent name="'" org.eventb.core.target="get_in"/>
-<org.eventb.core.action name="(" org.eventb.core.assignment="queue_place ≔ queue_place∖{person ↦ queue_place(person)}" org.eventb.core.label="act3"/>
+<org.eventb.core.action name="(" org.eventb.core.assignment="queue_place ≔ queue_place∖{person ↦ queue_place(person)}" org.eventb.core.comment="when in the bus a person is out of the queue" org.eventb.core.label="act3"/>
 </org.eventb.core.event>
 <org.eventb.core.event name="=" org.eventb.core.convergence="0" org.eventb.core.extended="true" org.eventb.core.label="get_out">
 <org.eventb.core.refinesEvent name="'" org.eventb.core.target="get_out"/>
@@ -27,6 +27,6 @@
 <org.eventb.core.event name="?" org.eventb.core.convergence="0" org.eventb.core.extended="true" org.eventb.core.label="bus_depart">
 <org.eventb.core.refinesEvent name="'" org.eventb.core.target="bus_depart"/>
 </org.eventb.core.event>
-<org.eventb.core.variable de.prob.units.inferredUnitPragmaAttribute="" de.prob.units.unitPragmaAttribute="" name="@" org.eventb.core.identifier="queue_place"/>
-<org.eventb.core.invariant name="A" org.eventb.core.label="inv1" org.eventb.core.predicate="queue_place ∈ waiting → ℕ1 "/>
+<org.eventb.core.variable de.prob.units.inferredUnitPragmaAttribute="" de.prob.units.unitPragmaAttribute="" name="@" org.eventb.core.comment="a set of tikets on the arrival" org.eventb.core.identifier="queue_place"/>
+<org.eventb.core.invariant name="A" org.eventb.core.comment="set the queue as a function that returns the number of a person on the queue" org.eventb.core.label="inv1" org.eventb.core.predicate="queue_place ∈ waiting → ℕ1 "/>
 </org.eventb.core.machineFile>

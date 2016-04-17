@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<org.eventb.core.machineFile org.eventb.core.configuration="org.eventb.core.fwd;de.prob.units.mchBase" version="5">
+<org.eventb.core.machineFile org.eventb.core.comment="creates the priority and  order to get in" org.eventb.core.configuration="org.eventb.core.fwd;de.prob.units.mchBase" version="5">
 <org.eventb.core.refinesMachine name="'" org.eventb.core.target="stop2"/>
 <org.eventb.core.seesContext name="*" org.eventb.core.target="passengers0"/>
 <org.eventb.core.seesContext name="+" org.eventb.core.target="bus0"/>
@@ -14,14 +14,14 @@
 <org.eventb.core.event name="B" org.eventb.core.convergence="0" org.eventb.core.extended="true" org.eventb.core.label="passenger_arrive_stop">
 <org.eventb.core.refinesEvent name="'" org.eventb.core.target="passenger_arrive_stop"/>
 <org.eventb.core.parameter name="(" org.eventb.core.identifier="p"/>
-<org.eventb.core.action name=")" org.eventb.core.assignment="priority(person) ≔ p" org.eventb.core.label="act4"/>
+<org.eventb.core.action name=")" org.eventb.core.assignment="priority(person) ≔ p" org.eventb.core.comment="when a person arrives we register the priority" org.eventb.core.label="act4"/>
 <org.eventb.core.guard name="*" org.eventb.core.label="grd2" org.eventb.core.predicate="p ∈ ℕ1 "/>
 </org.eventb.core.event>
 <org.eventb.core.event name="C" org.eventb.core.convergence="0" org.eventb.core.extended="true" org.eventb.core.label="get_in">
 <org.eventb.core.refinesEvent name="'" org.eventb.core.target="get_in"/>
-<org.eventb.core.action name="(" org.eventb.core.assignment="priority ≔ priority∖{person ↦ priority(person)}" org.eventb.core.label="act4"/>
-<org.eventb.core.guard name="," org.eventb.core.label="grd5" org.eventb.core.predicate="∀x·x∈waiting ⇒ priority(x) ≤ priority(person)"/>
-<org.eventb.core.guard name="-" org.eventb.core.comment=" " org.eventb.core.label="grd6" org.eventb.core.predicate="¬(∃x·x∈waiting ⇒ priority(x) = priority(person) ∧ queue_place(x) &lt; queue_place(person))"/>
+<org.eventb.core.action name="(" org.eventb.core.assignment="priority ≔ priority∖{person ↦ priority(person)}" org.eventb.core.comment="remove a person from the priority set" org.eventb.core.label="act4"/>
+<org.eventb.core.guard name="," org.eventb.core.comment="check that the person has the greater priority" org.eventb.core.label="grd5" org.eventb.core.predicate="∀x·x∈waiting ⇒ priority(x) ≤ priority(person)"/>
+<org.eventb.core.guard name="-" org.eventb.core.comment=" check if no one if a older ticket has the same priority" org.eventb.core.label="grd6" org.eventb.core.predicate="¬(∃x·x∈waiting ⇒ priority(x) = priority(person) ∧ queue_place(x) &lt; queue_place(person))"/>
 </org.eventb.core.event>
 <org.eventb.core.event name="D" org.eventb.core.convergence="0" org.eventb.core.extended="true" org.eventb.core.label="get_out">
 <org.eventb.core.refinesEvent name="'" org.eventb.core.target="get_out"/>
@@ -32,6 +32,6 @@
 <org.eventb.core.event name="F" org.eventb.core.convergence="0" org.eventb.core.extended="true" org.eventb.core.label="bus_depart">
 <org.eventb.core.refinesEvent name="'" org.eventb.core.target="bus_depart"/>
 </org.eventb.core.event>
-<org.eventb.core.variable de.prob.units.inferredUnitPragmaAttribute="" de.prob.units.unitPragmaAttribute="" name="G" org.eventb.core.identifier="priority"/>
+<org.eventb.core.variable de.prob.units.inferredUnitPragmaAttribute="" de.prob.units.unitPragmaAttribute="" name="G" org.eventb.core.comment="set a priority for a person " org.eventb.core.identifier="priority"/>
 <org.eventb.core.invariant name="H" org.eventb.core.label="inv1" org.eventb.core.predicate="priority ∈ waiting → ℕ1 "/>
 </org.eventb.core.machineFile>

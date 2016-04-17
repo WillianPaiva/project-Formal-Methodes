@@ -1,44 +1,44 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<org.eventb.core.machineFile org.eventb.core.configuration="org.eventb.core.fwd;de.prob.units.mchBase" version="5">
+<org.eventb.core.machineFile org.eventb.core.comment="basical bus stop implementation" org.eventb.core.configuration="org.eventb.core.fwd;de.prob.units.mchBase" version="5">
 <org.eventb.core.event name="'" org.eventb.core.convergence="0" org.eventb.core.extended="false" org.eventb.core.label="INITIALISATION">
-<org.eventb.core.action name="'" org.eventb.core.assignment="waiting ≔ ∅" org.eventb.core.label="act1"/>
-<org.eventb.core.action name="(" org.eventb.core.assignment="bus_passengers :∣ (bus_passengers' ⊆ PRS) ∧ finite(bus_passengers') ∧ (card(bus_passengers') ∈ 0‥maxPassengers)" org.eventb.core.label="act2"/>
-<org.eventb.core.action name=")" org.eventb.core.assignment="present ≔ FALSE" org.eventb.core.label="act3"/>
+<org.eventb.core.action name="'" org.eventb.core.assignment="waiting ≔ ∅" org.eventb.core.comment="initialize as no one is on the stop " org.eventb.core.label="act1"/>
+<org.eventb.core.action name="(" org.eventb.core.assignment="bus_passengers :∣ bus_passengers' ⊆ PRS ∧ finite(bus_passengers') ∧ (card(bus_passengers') ∈ 0‥maxPassengers)" org.eventb.core.comment=" the bus can have some passengers at the initialization" org.eventb.core.label="act2"/>
+<org.eventb.core.action name=")" org.eventb.core.assignment="present ≔ FALSE" org.eventb.core.comment="set present to false " org.eventb.core.label="act3"/>
 </org.eventb.core.event>
-<org.eventb.core.variable de.prob.units.inferredUnitPragmaAttribute="" de.prob.units.unitPragmaAttribute="" name="(" org.eventb.core.identifier="waiting"/>
-<org.eventb.core.invariant name=")" org.eventb.core.label="inv1" org.eventb.core.predicate="waiting ⊆ PRS"/>
+<org.eventb.core.variable de.prob.units.inferredUnitPragmaAttribute="" de.prob.units.unitPragmaAttribute="" name="(" org.eventb.core.comment="set of persons on the bus stop" org.eventb.core.identifier="waiting"/>
+<org.eventb.core.invariant name=")" org.eventb.core.comment="certifie that the waiting list is a subset of persons&#9;" org.eventb.core.label="inv1" org.eventb.core.predicate="waiting ⊆ PRS"/>
 <org.eventb.core.seesContext name="*" org.eventb.core.target="passengers0"/>
 <org.eventb.core.seesContext name="+" org.eventb.core.target="bus0"/>
-<org.eventb.core.variable de.prob.units.inferredUnitPragmaAttribute="" de.prob.units.unitPragmaAttribute="" name="," org.eventb.core.identifier="bus_passengers"/>
-<org.eventb.core.invariant name="-" org.eventb.core.label="inv2" org.eventb.core.predicate="bus_passengers ⊆ PRS"/>
-<org.eventb.core.event name="." org.eventb.core.convergence="0" org.eventb.core.extended="false" org.eventb.core.label="passenger_arrive_stop">
+<org.eventb.core.variable de.prob.units.inferredUnitPragmaAttribute="" de.prob.units.unitPragmaAttribute="" name="," org.eventb.core.comment="set of passengers inside the bus" org.eventb.core.identifier="bus_passengers"/>
+<org.eventb.core.invariant name="-" org.eventb.core.comment="certifie that the bus_passengers is a sub set of persons" org.eventb.core.label="inv2" org.eventb.core.predicate="bus_passengers ⊆ PRS"/>
+<org.eventb.core.event name="." org.eventb.core.comment="the event when a person arrive at the stop " org.eventb.core.convergence="0" org.eventb.core.extended="false" org.eventb.core.label="passenger_arrive_stop">
 <org.eventb.core.parameter name="'" org.eventb.core.identifier="person"/>
-<org.eventb.core.guard name="(" org.eventb.core.label="grd1" org.eventb.core.predicate="person ∉ waiting ∧ person ∉ bus_passengers ∧ person ∈ PRS"/>
-<org.eventb.core.action name=")" org.eventb.core.assignment="waiting ≔ waiting ∪ {person}" org.eventb.core.label="act1"/>
+<org.eventb.core.guard name="(" org.eventb.core.comment="certifie that it is a new person " org.eventb.core.label="grd1" org.eventb.core.predicate="person ∉ waiting ∧ person ∉ bus_passengers ∧ person ∈ PRS"/>
+<org.eventb.core.action name=")" org.eventb.core.assignment="waiting ≔ waiting ∪ {person}" org.eventb.core.comment="include the person on the waiting set" org.eventb.core.label="act1"/>
 </org.eventb.core.event>
-<org.eventb.core.event name="/" org.eventb.core.convergence="0" org.eventb.core.extended="false" org.eventb.core.label="get_in">
+<org.eventb.core.event name="/" org.eventb.core.comment="event of a person geting in the bus" org.eventb.core.convergence="0" org.eventb.core.extended="false" org.eventb.core.label="get_in">
 <org.eventb.core.parameter name="'" org.eventb.core.identifier="person"/>
-<org.eventb.core.guard name="(" org.eventb.core.label="grd1" org.eventb.core.predicate="person ∈ waiting ∧ person ∉ bus_passengers"/>
-<org.eventb.core.action name=")" org.eventb.core.assignment="waiting ≔ waiting∖{person}" org.eventb.core.label="act1"/>
-<org.eventb.core.action name="*" org.eventb.core.assignment="bus_passengers ≔ bus_passengers ∪ {person}" org.eventb.core.label="act2"/>
-<org.eventb.core.guard name="+" org.eventb.core.label="grd2" org.eventb.core.predicate="present = TRUE"/>
-<org.eventb.core.guard name="," org.eventb.core.label="grd3" org.eventb.core.predicate="card(bus_passengers) &lt; maxPassengers"/>
+<org.eventb.core.guard name="(" org.eventb.core.comment="certifie that is a person on the stop" org.eventb.core.label="grd1" org.eventb.core.predicate="person ∈ waiting ∧ person ∉ bus_passengers"/>
+<org.eventb.core.action name=")" org.eventb.core.assignment="waiting ≔ waiting∖{person}" org.eventb.core.comment="subtract the person from the waiting set" org.eventb.core.label="act1"/>
+<org.eventb.core.action name="*" org.eventb.core.assignment="bus_passengers ≔ bus_passengers ∪ {person}" org.eventb.core.comment="insert the person on the bus_passenger set" org.eventb.core.label="act2"/>
+<org.eventb.core.guard name="+" org.eventb.core.comment="check if the bus is at the stop" org.eventb.core.label="grd2" org.eventb.core.predicate="present = TRUE"/>
+<org.eventb.core.guard name="," org.eventb.core.comment="and certifie that the bus has space" org.eventb.core.label="grd3" org.eventb.core.predicate="card(bus_passengers) &lt; maxPassengers"/>
 </org.eventb.core.event>
-<org.eventb.core.event name="0" org.eventb.core.convergence="0" org.eventb.core.extended="false" org.eventb.core.label="get_out">
+<org.eventb.core.event name="0" org.eventb.core.comment="event of a person geting out of the bus " org.eventb.core.convergence="0" org.eventb.core.extended="false" org.eventb.core.label="get_out">
 <org.eventb.core.parameter name="'" org.eventb.core.identifier="person"/>
-<org.eventb.core.guard name="(" org.eventb.core.label="grd1" org.eventb.core.predicate="person ∈ bus_passengers ∧ person ∉ waiting"/>
-<org.eventb.core.action name=")" org.eventb.core.assignment="bus_passengers ≔ bus_passengers∖{person}" org.eventb.core.label="act1"/>
-<org.eventb.core.guard name="*" org.eventb.core.label="grd2" org.eventb.core.predicate="present = TRUE"/>
+<org.eventb.core.guard name="(" org.eventb.core.comment="check if the person is on the bus" org.eventb.core.label="grd1" org.eventb.core.predicate="person ∈ bus_passengers ∧ person ∉ waiting"/>
+<org.eventb.core.action name=")" org.eventb.core.assignment="bus_passengers ≔ bus_passengers∖{person}" org.eventb.core.comment="subtract the person from the bus set" org.eventb.core.label="act1"/>
+<org.eventb.core.guard name="*" org.eventb.core.comment="check if the bus is at the stop" org.eventb.core.label="grd2" org.eventb.core.predicate="present = TRUE"/>
 </org.eventb.core.event>
-<org.eventb.core.variable de.prob.units.inferredUnitPragmaAttribute="" de.prob.units.unitPragmaAttribute="" name="1" org.eventb.core.identifier="present"/>
-<org.eventb.core.invariant name="2" org.eventb.core.label="inv3" org.eventb.core.predicate="present ∈ BOOL"/>
-<org.eventb.core.event name="3" org.eventb.core.convergence="0" org.eventb.core.extended="false" org.eventb.core.label="bus_arrive">
+<org.eventb.core.variable de.prob.units.inferredUnitPragmaAttribute="" de.prob.units.unitPragmaAttribute="" name="1" org.eventb.core.comment="boolean to see if the bus is at the stop" org.eventb.core.identifier="present"/>
+<org.eventb.core.invariant name="2" org.eventb.core.comment="set the presnent as boolean" org.eventb.core.label="inv3" org.eventb.core.predicate="present ∈ BOOL"/>
+<org.eventb.core.event name="3" org.eventb.core.comment="event for the bus arriving on the stop" org.eventb.core.convergence="0" org.eventb.core.extended="false" org.eventb.core.label="bus_arrive">
 <org.eventb.core.guard name="'" org.eventb.core.label="grd1" org.eventb.core.predicate="present = FALSE"/>
 <org.eventb.core.action name="(" org.eventb.core.assignment="present ≔ TRUE" org.eventb.core.label="act1"/>
 </org.eventb.core.event>
-<org.eventb.core.event name="4" org.eventb.core.convergence="0" org.eventb.core.extended="false" org.eventb.core.label="bus_depart">
+<org.eventb.core.event name="4" org.eventb.core.comment="event for the bus departure " org.eventb.core.convergence="0" org.eventb.core.extended="false" org.eventb.core.label="bus_depart">
 <org.eventb.core.guard name="'" org.eventb.core.label="grd1" org.eventb.core.predicate="present = TRUE"/>
 <org.eventb.core.action name="(" org.eventb.core.assignment="present ≔ FALSE" org.eventb.core.label="act1"/>
 </org.eventb.core.event>
-<org.eventb.core.invariant name="5" org.eventb.core.label="inv4" org.eventb.core.predicate="card(bus_passengers) ∈ 0‥maxPassengers"/>
+<org.eventb.core.invariant name="5" org.eventb.core.comment="certifie that the cardinalitie of bus passenger don't pass the maximun number of passenger of a bus " org.eventb.core.label="inv4" org.eventb.core.predicate="card(bus_passengers) ∈ 0‥maxPassengers"/>
 </org.eventb.core.machineFile>
